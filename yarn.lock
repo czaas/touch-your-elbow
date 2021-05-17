@@ -72,7 +72,7 @@
     estree-walker "^2.0.1"
     picomatch "^2.2.2"
 
-"@sveltejs/adapter-netlify@1.0.0-next.12":
+"@sveltejs/adapter-netlify@^1.0.0-next.9":
   version "1.0.0-next.12"
   resolved "https://registry.yarnpkg.com/@sveltejs/adapter-netlify/-/adapter-netlify-1.0.0-next.12.tgz#54947cb94e2ee7e49228ad819c67069e78d89a54"
   integrity sha512-34+Xk2YmTDgDJWVliaZtAiDbtEsZurENwALxdD1dDQErxI0HPGZgmmwktLJjf2mU2/DcGJAXZxgq2RsGiDxAZA==
