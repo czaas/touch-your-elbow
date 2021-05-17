@@ -24,14 +24,15 @@
   },
   "type": "module",
   "dependencies": {
-    "@sveltejs/adapter-netlify": "^1.0.0-next.9",
     "@mediapipe/pose": "^0.3.1621277220",
+    "@sveltejs/adapter-netlify": "^1.0.0-next.9",
     "@tensorflow-models/pose-detection": "^0.0.1",
     "@tensorflow/tfjs": "^3.6.0",
     "@tensorflow/tfjs-backend-wasm": "^3.6.0",
     "@tensorflow/tfjs-backend-webgl": "^3.6.0",
     "@tensorflow/tfjs-converter": "^3.6.0",
     "@tensorflow/tfjs-core": "^3.6.0",
+    "encoding": "^0.1.13",
     "sass": "^1.32.13"
   }
 }
