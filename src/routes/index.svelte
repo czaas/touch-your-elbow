@@ -76,6 +76,8 @@
 {#if browserSupported}
 	<h1>Touch your left elbow</h1>
 
+    <p><a href="https://github.com/czaas/touch-your-elbow" target="_blank">Source code on github</a></p>
+
 	<video autoplay id="video" />
 
     {#if ready}
@@ -105,9 +107,8 @@
         font-size: 20px;
 	}
 	video {
-		margin: 0 auto;
-		background: #222;
 		// turn video around because it's like a mirror
 		transform: rotateY(180deg);
+		margin: 0 auto;
 	}
 </style>
