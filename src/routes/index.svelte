@@ -11,6 +11,7 @@
 	let isTouchingElbow = false;
 	let leftElbowCoord = { x: null, y: null };
 	let rightHandCoord = { x: null, y: null };
+    let ready = false;
     
     let rightHandExists = false;
     let leftElbowExists = false;
@@ -39,7 +40,7 @@
 		// Create a detector.
 		const model = poseDetection.SupportedModels.MoveNet;
 		detector = await poseDetection.createDetector(model);
-
+        ready = true;
 		getPoses();
 	}
 
@@ -77,16 +78,23 @@
 
 	<video autoplay id="video" />
 
-    {#if rightHandExists && !leftElbowExists}
-        <p>We can see your right hand but not your left elbow</p>
-    {/if}
-    {#if !rightHandExists && leftElbowExists}
-        <p>We can see your left elbow but not your right hand</p>
-    {/if}
+    {#if ready}
+        {#if !rightHandExists && !leftElbowExists}
+            <p>We cannot see your left elbow or your right hand</p>
+        {:else if rightHandExists && !leftElbowExists}
+            <p>We can see your right hand but not your left elbow</p>
+        {:else if !rightHandExists && leftElbowExists}
+            <p>We can see your left elbow but not your right hand</p>
+        {:else if !prettyDamnClose}
+            <p>Now touch</p>
+        {/if}
 
-	{#if prettyDamnClose}
-		<p>Yay! You're touching your elbow (more or less)</p>
-	{/if}
+        {#if prettyDamnClose}
+            <p>Yay! You're touching your elbow (more or less)</p>
+        {/if}
+    {:else}
+        <p>Loading...</p>
+    {/if}
 {:else}
 	<h1>Your Browser is not supported</h1>
 {/if}
@@ -94,6 +102,7 @@
 <style lang="scss">
 	:global(body) {
 		text-align: center;
+        font-size: 20px;
 	}
 	video {
 		margin: 0 auto;
