@@ -8,7 +8,6 @@
 	let browserSupported = true;
 	let video: HTMLVideoElement;
 	let detector: any;
-	let isTouchingElbow = false;
 	let leftElbowCoord = { x: null, y: null };
 	let rightHandCoord = { x: null, y: null };
     let ready = false;
@@ -18,23 +17,25 @@
 	$: haveBoth = rightHandExists && leftElbowExists;
 
 	onMount(() => {
-		if (hasGetUserMedia()) {
+		if (canUseCamera()) {
 			getVideoStream();
 		} else {
 			browserSupported = false;
 		}
 	});
 
-	function hasGetUserMedia() {
-		return !!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia);
+	function canUseCamera() {
+        const enumerateDevicesCheck = !!navigator?.mediaDevices?.enumerateDevices;
+		return enumerateDevicesCheck;
 	}
-
 	async function getVideoStream() {
 		video = document.querySelector('#video');
 		await navigator.mediaDevices.getUserMedia({ video: true }).then((stream) => {
 			video.srcObject = stream;
+            video.onloadeddata = () => {
+                setupTensorFlow();
+            };
 		});
-		setupTensorFlow();
 	}
 	async function setupTensorFlow() {
 		// Create a detector.
