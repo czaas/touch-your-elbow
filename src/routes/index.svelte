@@ -25,8 +25,8 @@
 	});
 
 	function canUseCamera() {
-        const enumerateDevicesCheck = !!navigator?.mediaDevices?.enumerateDevices;
-		return enumerateDevicesCheck;
+        const getUserMediaCheck = !!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia);
+		return getUserMediaCheck;
 	}
 	async function getVideoStream() {
 		video = document.querySelector('#video');
